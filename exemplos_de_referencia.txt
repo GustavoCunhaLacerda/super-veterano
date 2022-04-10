@@ -27,4 +27,4 @@ Mapa:
   - https://phaser.io/examples/v3/view/tilemap/set-map-size
 
 Textura: 
-- Textura sobre objetos já criados para utilização nosso jogo : https://phaser.io/examples/v3/view/textures/generate-more-textures
+  - Textura sobre objetos já criados para utilização nosso jogo : https://phaser.io/examples/v3/view/textures/generate-more-textures
