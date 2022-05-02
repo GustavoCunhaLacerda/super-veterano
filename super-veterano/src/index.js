@@ -1,41 +1,39 @@
 import Phaser from "phaser";
-import TestSpriteAnimations from "./scenes/TestSpriteAnimations";
+import Dhiego from "./scenes/Dhiego";
 
 class Boot extends Phaser.Scene {
   constructor() {
     super();
   }
 
-  preload() {
-    this.load.image("logo", LogoImg);
-  }
+  preload() {}
 
-  create() {
-    const logo = this.add.image(400, 150, "logo");
+  create() {}
 
-    this.tweens.add({
-      targets: logo,
-      y: 450,
-      duration: 2000,
-      ease: "Power2",
-      yoyo: true,
-      loop: -1,
-    });
-  }
+  update() {}
 }
 
 const config = {
   type: Phaser.AUTO,
   parent: "super-veterano",
-  width: 800,
-  height: 600,
   pixelArt: true,
-  backgroundColor: "#242424",
+  width: 800,
+  height: 800,
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: {
+        y: 300,
+      },
+      debug: true,
+    },
+  },
+  backgroundColor: "#f9f9f9",
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [TestSpriteAnimations],
+  scene: [Dhiego],
 };
 
 const game = new Phaser.Game(config);
