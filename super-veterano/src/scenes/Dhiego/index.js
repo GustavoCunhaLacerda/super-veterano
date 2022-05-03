@@ -1,7 +1,10 @@
 import Phaser from "phaser";
+import addControlKeys from "../../gameplay/addControlKeys";
 
 import Luiz from "../../assets/animations/_side_walk.png";
 import Ground from "../../assets/platforms/platform.png";
+import playerControls from "../../gameplay/playerControls";
+import playerAnimations from "../../animations/playerAnimations";
 
 export default class Dhiego extends Phaser.Scene {
   constructor() {
@@ -14,33 +17,13 @@ export default class Dhiego extends Phaser.Scene {
   }
 
   create() {
-    this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.a = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    addControlKeys(this);
 
     const platforms = this.physics.add.staticGroup();
     platforms.create(400, 568, "ground").setScale(2).refreshBody();
 
-    this.anims.create({
-      key: "walk",
-      frames: this.anims.generateFrameNumbers("luiz", {
-        frames: [0, 1, 2, 3, 4, 5],
-      }),
-      frameRate: 8,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "idle",
-      frames: this.anims.generateFrameNumbers("luiz", {
-        frames: [1],
-      }),
-      frameRate: 8,
-      repeat: -1,
-    });
-
-    const keys = ["walk", "idle"];
+    playerAnimations.idleAnimation(this);
+    playerAnimations.walkAnimation(this);
 
     this.player = this.physics.add
       .sprite(400, 400)
@@ -48,27 +31,15 @@ export default class Dhiego extends Phaser.Scene {
       .setOffset(16, 16);
 
     this.player.setScale(3);
+    this.player.setCollideWorldBounds(true);
 
     this.physics.add.collider(this.player, platforms);
   }
 
   update() {
-    let cursors = this.input.keyboard.createCursorKeys();
-
-    // andar e parar
-    if (cursors.left.isDown) {
-      this.movePlayer("R");
-    } else if (cursors.right.isDown) {
-      this.movePlayer("L");
-    } else {
-      this.pausePlayer();
-    }
-
-    // pular
-    if (cursors.up.isDown && this.player.body.touching.down)
-    {
-        this.player.setVelocityY(-330);
-    }
+    this.baseGameplayCursor = this.input.keyboard.createCursorKeys();
+    playerControls.walk(this);
+    playerControls.jump(this);
   }
 
   pausePlayer() {

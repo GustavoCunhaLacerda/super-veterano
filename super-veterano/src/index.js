@@ -1,4 +1,8 @@
 import Phaser from "phaser";
+
+import constants from "./global/constants";
+import colors from "./global/colors";
+
 import Dhiego from "./scenes/Dhiego";
 
 class Boot extends Phaser.Scene {
@@ -17,18 +21,18 @@ const config = {
   type: Phaser.AUTO,
   parent: "super-veterano",
   pixelArt: true,
-  width: 800,
-  height: 800,
+  width: constants.WINDOW_WIDTH,
+  height: constants.WINDOW_HEIGHT,
   physics: {
-    default: "arcade",
+    default: constants.PHYSICS_TYPE,
     arcade: {
       gravity: {
-        y: 300,
+        y: constants.GRAVITY_Y,
       },
       debug: true,
     },
   },
-  backgroundColor: "#f9f9f9",
+  backgroundColor: colors.BACKGROUND_CANVA,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

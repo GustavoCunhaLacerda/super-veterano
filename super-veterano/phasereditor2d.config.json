@@ -1,4 +1,0 @@
-{
-    "plugins": [],
-    "skip": ["**/node_modules"]
-}
