@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import addControlKeys from "../../gameplay/addControlKeys";
 
 import Ground from "../../assets/platforms/platform.png";
+import PlatformAngled from "../../assets/platforms/platform-angled.png";
 
 import luiz_idle from "../../assets/animations/luiz/luiz_idle-Sheet.png";
 import luiz_walk from "../../assets/animations/luiz/luiz_walk-Sheet.png";
@@ -19,13 +20,18 @@ export default class Dhiego extends Phaser.Scene {
     this.load.spritesheet("luiz_idle", luiz_idle, { frameWidth: 23, frameHeight: 23 });
     this.load.spritesheet("luiz_jump", luiz_jump, { frameWidth: 23, frameHeight: 23 });
     this.load.image("ground", Ground);
+    this.load.image("ground_2", Ground);
+    this.load.image("ground_3", Ground);
   }
 
   create() {
     addControlKeys(this);
 
     const platforms = this.physics.add.staticGroup();
-    platforms.create(400, 568, "ground").setScale(2).refreshBody();
+    platforms.create(400, 800, "ground").setScale(2).refreshBody();
+    platforms.create(200, 600, "ground").setScale(1).refreshBody();
+    platforms.create(600, 400, "ground_2").setScale(1).refreshBody();
+    platforms.create(200, 200, "ground_3").setScale(1).refreshBody();
 
     playerAnimations.idleAnimation(this);
     playerAnimations.walkAnimation(this);

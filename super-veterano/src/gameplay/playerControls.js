@@ -13,7 +13,7 @@ export default {
 
   jump(ref) {
     if (ref.baseGameplayCursor.up.isDown && ref.player.body.touching.down) {
-        ref.player.setVelocityY(-330);
+        ref.player.setVelocityY(-400);
         ref.player.anims.play("jump", true);
     }
   },
