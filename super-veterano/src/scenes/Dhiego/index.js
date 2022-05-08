@@ -1,8 +1,11 @@
 import Phaser from "phaser";
 import addControlKeys from "../../gameplay/addControlKeys";
 
-import Luiz from "../../assets/animations/_side_walk.png";
 import Ground from "../../assets/platforms/platform.png";
+
+import luiz_idle from "../../assets/animations/luiz/luiz_idle-Sheet.png";
+import luiz_walk from "../../assets/animations/luiz/luiz_walk-Sheet.png";
+import luiz_jump from "../../assets/animations/luiz/luiz_jump.png";
 import playerControls from "../../gameplay/playerControls";
 import playerAnimations from "../../animations/playerAnimations";
 
@@ -12,7 +15,9 @@ export default class Dhiego extends Phaser.Scene {
   }
 
   preload() {
-    this.load.spritesheet("luiz", Luiz, { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet("luiz_walk", luiz_walk, { frameWidth: 23, frameHeight: 23 });
+    this.load.spritesheet("luiz_idle", luiz_idle, { frameWidth: 23, frameHeight: 23 });
+    this.load.spritesheet("luiz_jump", luiz_jump, { frameWidth: 23, frameHeight: 23 });
     this.load.image("ground", Ground);
   }
 
@@ -24,11 +29,12 @@ export default class Dhiego extends Phaser.Scene {
 
     playerAnimations.idleAnimation(this);
     playerAnimations.walkAnimation(this);
+    playerAnimations.jumpAnimation(this);
 
     this.player = this.physics.add
       .sprite(400, 400)
-      .setSize(32, 30)
-      .setOffset(16, 16);
+      .setSize(10, 15)
+      .setOffset(6, 8);
 
     this.player.setScale(3);
     this.player.setCollideWorldBounds(true);
@@ -40,18 +46,5 @@ export default class Dhiego extends Phaser.Scene {
     this.baseGameplayCursor = this.input.keyboard.createCursorKeys();
     playerControls.walk(this);
     playerControls.jump(this);
-  }
-
-  pausePlayer() {
-    this.player.setVelocityX(0);
-    this.player.anims.play("idle");
-  }
-
-  movePlayer(SENSE) {
-    const signal = SENSE == "R" ? -1 : 1;
-    const speed = 160;
-    this.player.setVelocityX(speed * signal);
-    this.player.anims.play("walk", true);
-    this.player.flipX = SENSE == "R" ? false : true;
   }
 }
