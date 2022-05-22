@@ -12,8 +12,8 @@ export default {
   },
 
   jump(ref) {
-    if (ref.baseGameplayCursor.up.isDown && ref.player.body.touching.down) {
-        ref.player.setVelocityY(-400);
+    if (ref.baseGameplayCursor.up.isDown && ref.player.body.blocked.down) {
+        ref.player.setVelocityY(-300);
         ref.player.anims.play("jump", true);
     }
   },
@@ -29,7 +29,7 @@ export default {
     const signal = SENSE == "R" ? -1 : 1;
     const speed = constants.PLAYER_X_MOVESPEED;
     ref.player.setVelocityX(speed * signal);
-    ref.player.body.touching.down && ref.player.anims.play("walk", true);
+    ref.player.body.blocked.down && ref.player.anims.play("walk", true);
     ref.player.flipX = SENSE == "R" ? true : false;
   }
 };

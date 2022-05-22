@@ -4,18 +4,7 @@ import constants from "./global/constants";
 import colors from "./global/colors";
 
 import Dhiego from "./scenes/Dhiego";
-
-class Boot extends Phaser.Scene {
-  constructor() {
-    super();
-  }
-
-  preload() {}
-
-  create() {}
-
-  update() {}
-}
+import MainMenu from "./scenes/MainMenu";
 
 const config = {
   type: Phaser.AUTO,
@@ -37,7 +26,7 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [Dhiego],
+  scene: [MainMenu, Dhiego],
 };
 
 const game = new Phaser.Game(config);

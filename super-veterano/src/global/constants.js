@@ -4,8 +4,8 @@ export default {
   SUBTITLE: "a história de um repetente",
 
   // canva
-  WINDOW_WIDTH: 800,
-  WINDOW_HEIGHT: 800,
+  WINDOW_WIDTH: 16 * 38,
+  WINDOW_HEIGHT: 16 * 38,
 
   // physics
   PHYSICS_TYPE: "arcade",
