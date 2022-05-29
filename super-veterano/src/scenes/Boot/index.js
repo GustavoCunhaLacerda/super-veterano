@@ -1,9 +1,12 @@
 import Textures16 from "../../assets/tiles/Textures-16.png";
 import bg from "../../assets/backgrounds/leveld_Bg.jpg";
 import IFBEntrance from "../../assets/backgrounds/fachada-ifb.png";
+import loadingSprite from "../../assets/ui/wenrexa/Progress03.png";
+import buttonBase from "../../assets/ui/wenrexa/Button18.png";
 
 import luizAnims from "../../game_objects/player/Luiz/assets/animations";
 import dhiegoAnims from "../../game_objects/enemies/bosses/Dhiego/animations";
+import alessandraAnims from "../../game_objects/enemies/bosses/Alessandra/animations";
 
 export default class Boot extends Phaser.Scene {
   constructor() {
@@ -11,9 +14,13 @@ export default class Boot extends Phaser.Scene {
   }
 
   preload() {
+    // ------------------------------ General ------------------------------ //
+
+    // ------------------------------- Menu ------------------------------- //
     this.load.image("bg", bg);
     this.load.image("textures-16", Textures16);
     this.load.image("ifbEntrance", IFBEntrance);
+    this.load.image("buttonBase", buttonBase);
 
     // ------------------------------ Player ------------------------------ //
     this.load.spritesheet("luiz_idle", luizAnims.luiz_idle, {
@@ -34,11 +41,32 @@ export default class Boot extends Phaser.Scene {
       frameWidth: 42,
       frameHeight: 48,
     });
+    this.load.spritesheet(
+      "alessandra_writing",
+      alessandraAnims.alessandra_writing,
+      {
+        frameWidth: 42,
+        frameHeight: 48,
+      }
+    );
+
+    this.load.image("loading", loadingSprite);
+
+    // ref: https://gamedevacademy.org/creating-a-preloading-screen-in-phaser-3/
+    const progressBar = this.add.graphics();
+    const progressBox = this.add.graphics();
+    progressBox.fillStyle(0x222222, 0.8);
+    progressBox.fillRect(240, 270, 320, 50);
+
+    this.load.on("progress", function (value) {
+      console.log(value);
+      progressBar.clear();
+      progressBar.fillStyle(0xffffff, 1);
+      progressBar.fillRect(250, 280, 300 * value, 30);
+    });
 
     this.load.on("complete", () => {
-      console.log("carregou tudinho");
       this.scene.start("mainmenu");
-      console.log("passou para o menu");
     });
   }
 

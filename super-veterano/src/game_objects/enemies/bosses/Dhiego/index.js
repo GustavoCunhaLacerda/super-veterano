@@ -11,6 +11,6 @@ export default class Dhiego {
       .setSize(42, 48)
       .setOffset(0, 0)
       .setScale(2)
-      .anims.play("writing", true);
+      .anims.play("d_writing", true);
   }
 }

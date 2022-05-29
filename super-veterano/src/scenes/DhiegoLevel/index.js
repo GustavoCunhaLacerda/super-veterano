@@ -8,23 +8,27 @@ export default class DhiegoLevel extends Phaser.Scene {
   }
 
   preload() {
-    this.load.tilemapCSV("map", "src/scenes/DhiegoLevel/level_tileset_map.csv");
+    this.load.tilemapCSV("dhiegomap", "src/scenes/DhiegoLevel/level_tileset_map.csv");
   }
 
   create() {
     this.add.image(304, 304, "bg").setScale(2);
 
     this.player = new Luiz(this);
-    this.boss = new Dhiego(this);
+    const dhiego = new Dhiego(this);
 
-    this.map = this.make.tilemap({ key: "map", tileWidth: 16, tileHeight: 16 });
+    this.map = this.make.tilemap({ key: "dhiegomap", tileWidth: 16, tileHeight: 16 });
     this.tileset = this.map.addTilesetImage("textures-16");
     this.layer = this.map.createLayer(0, this.tileset, 0, 0);
     this.map.setCollisionBetween(549, 20000);
 
     this.player.sprite.setCollideWorldBounds(true);
     this.physics.add.collider(this.player.sprite, this.layer);
-    this.physics.add.collider(this.boss.sprite, this.layer);
+    this.physics.add.collider(dhiego.sprite, this.layer);
+
+    this.physics.add.overlap(this.player.sprite, dhiego.sprite, () => {
+      this.scene.start("alessandralevel");
+    });
   }
 
   update() {
