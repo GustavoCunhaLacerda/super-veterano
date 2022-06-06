@@ -3,7 +3,7 @@
  "imageheight":512,
  "imagewidth":512,
  "margin":0,
- "name":"Textures-16",
+ "name":"Textures.default",
  "spacing":0,
  "tilecount":1024,
  "tiledversion":"1.8.5",

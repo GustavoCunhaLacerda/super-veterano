@@ -21,7 +21,7 @@ export default class AlessandraLevel extends Phaser.Scene {
       tileWidth: 16,
       tileHeight: 16,
     });
-    const tileset = map.addTilesetImage("textures-16");
+    const tileset = map.addTilesetImage("Textures.default");
     const layer = map.createLayer(0, tileset, 0, 0);
     map.setCollisionBetween(684, 700);
     map.setCollisionBetween(1000, 1007);

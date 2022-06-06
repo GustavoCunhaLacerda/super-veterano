@@ -14,41 +14,16 @@ export default class Boot extends Phaser.Scene {
   }
 
   preload() {
-    // ------------------------------ General ------------------------------ //
-
-    // ------------------------------- Menu ------------------------------- //
-    this.load.image("bg", bg);
-    this.load.image("textures-16", Textures16);
-    this.load.image("ifbEntrance", IFBEntrance);
-    this.load.image("buttonBase", buttonBase);
-
-    // ------------------------------ Player ------------------------------ //
-    this.load.spritesheet("luiz_idle", luizAnims.luiz_idle, {
-      frameWidth: 23,
-      frameHeight: 23,
-    });
-    this.load.spritesheet("luiz_walk", luizAnims.luiz_walk, {
-      frameWidth: 23,
-      frameHeight: 23,
-    });
-    this.load.spritesheet("luiz_jump", luizAnims.luiz_jump, {
-      frameWidth: 23,
-      frameHeight: 23,
-    });
-
-    // ---------------------------- Boss (Dhiego) --------------------------- //
-    this.load.spritesheet("dhiego_writing", dhiegoAnims.dhiego_writing, {
-      frameWidth: 42,
-      frameHeight: 48,
-    });
-    this.load.spritesheet(
-      "alessandra_writing",
-      alessandraAnims.alessandra_writing,
-      {
-        frameWidth: 42,
-        frameHeight: 48,
-      }
-    );
+    this.load.image("Background.default", bg);
+    this.load.image("Textures.default", Textures16);
+    this.load.image("Background.menu", IFBEntrance);
+    this.load.image("Intrerface.button.base", buttonBase);
+    
+    this.load.spritesheet("Sprites.player.luiz.idle", luizAnims.luiz_idle, { frameWidth: 23, frameHeight: 23 });
+    this.load.spritesheet("Sprites.player.luiz.walk", luizAnims.luiz_walk, { frameWidth: 23, frameHeight: 23 });
+    this.load.spritesheet("Sprites.player.luiz.jump", luizAnims.luiz_jump, { frameWidth: 23, frameHeight: 23 });
+    this.load.spritesheet("Sprites.enemies.dhiego.writing", dhiegoAnims.dhiego_writing, { frameWidth: 42, frameHeight: 48 });
+    this.load.spritesheet("Sprites.enemies.alessandra.writing", alessandraAnims.alessandra_writing, { frameWidth: 42, frameHeight: 48 });
 
     this.load.image("loading", loadingSprite);
 

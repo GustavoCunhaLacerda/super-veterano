@@ -8,10 +8,10 @@ export default class MainMenu extends Phaser.Scene {
   preload() {}
 
   create() {
-    this.add.image(300, 300, "ifbEntrance").setScale(5);
+    this.add.image(300, 300, "Background.menu").setScale(5);
 
     // Start game buton
-    const startGame_btn = this.add.image(304, 454, "buttonBase").setScale(1);
+    const startGame_btn = this.add.image(304, 454, "Intrerface.button.base").setScale(1);
 
     // Centered text in the middle of button
     const startBtn_text = this.add
@@ -39,7 +39,7 @@ export default class MainMenu extends Phaser.Scene {
     });
 
     // Credits button equal to start button
-    const credits_btn = this.add.image(304, 524, "buttonBase").setScale(1);
+    const credits_btn = this.add.image(304, 524, "Intrerface.button.base").setScale(1);
 
     // add text to credits button
     const creditsBtn_text = this.add

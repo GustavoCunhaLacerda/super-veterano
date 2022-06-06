@@ -4,7 +4,7 @@ export default class Alessandra {
   constructor(phaserScene) {
     this.phaserScene = phaserScene;
 
-    alessandraAnimations.writeAnimation(phaserScene, "alessandra_writing");
+    alessandraAnimations.writeAnimation(phaserScene, "Sprites.enemies.alessandra.writing");
 
     this.sprite = phaserScene.physics.add
       .sprite(304, 9 * 12)

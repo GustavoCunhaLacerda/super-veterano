@@ -6,9 +6,9 @@ export default class Luiz {
   constructor(phaserScene) {
     this.phaserScene = phaserScene;
 
-    playerAnimations.idleAnimation(phaserScene, "luiz_idle");
-    playerAnimations.walkAnimation(phaserScene, "luiz_walk");
-    playerAnimations.jumpAnimation(phaserScene, "luiz_jump");
+    playerAnimations.idleAnimation(phaserScene, "Sprites.player.luiz.idle");
+    playerAnimations.walkAnimation(phaserScene, "Sprites.player.luiz.walk");
+    playerAnimations.jumpAnimation(phaserScene, "Sprites.player.luiz.jump");
 
     addControlKeys(phaserScene);
 

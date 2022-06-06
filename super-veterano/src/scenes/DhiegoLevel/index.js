@@ -12,13 +12,13 @@ export default class DhiegoLevel extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(304, 304, "bg").setScale(2);
+    this.add.image(304, 304, "Background.default").setScale(2);
 
     this.player = new Luiz(this);
     const dhiego = new Dhiego(this);
 
     this.map = this.make.tilemap({ key: "dhiegomap", tileWidth: 16, tileHeight: 16 });
-    this.tileset = this.map.addTilesetImage("textures-16");
+    this.tileset = this.map.addTilesetImage("Textures.default");
     this.layer = this.map.createLayer(0, this.tileset, 0, 0);
     this.map.setCollisionBetween(549, 20000);
 
