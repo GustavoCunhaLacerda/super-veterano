@@ -1,6 +1,6 @@
 import Phaser from "phaser";
-import Alessandra from "../../game_objects/enemies/bosses/Alessandra";
-import Luiz from "../../game_objects/player/Luiz";
+import Alessandra from "../../../game_objects/enemies/bosses/Alessandra";
+import Luiz from "../../../game_objects/player/Luiz";
 
 export default class AlessandraLevel extends Phaser.Scene {
   constructor() {
@@ -9,10 +9,7 @@ export default class AlessandraLevel extends Phaser.Scene {
 
   preload() {
     // load level
-    this.load.tilemapCSV(
-      "map",
-      "src/scenes/AlessandraLevel/level_tileset_map.csv"
-    );
+    this.load.tilemapCSV("map", "src/scenes/screens/Levels/AlessandraLevel/level_tileset_map.csv");
   }
 
   create() {

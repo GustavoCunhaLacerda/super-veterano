@@ -30,7 +30,7 @@ export default class Credits extends Phaser.Scene {
       .setOrigin(0.5);
 
     // add a return button to main menu with text and hover effect
-    const returnBtn = this.add.image(304, 454, "Intrerface.button.base").setScale(1);
+    const returnBtn = this.add.image(304, 454, "Interface.button.base").setScale(1);
     const returnBtn_text = this.add
       .text(returnBtn.x, returnBtn.y, "VOLTAR", fontConfig)
       .setOrigin(0.5);

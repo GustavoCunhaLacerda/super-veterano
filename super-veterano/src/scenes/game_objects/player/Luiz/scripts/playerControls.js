@@ -1,4 +1,4 @@
-import constants from "../../../../global/constants";
+import constants from "../../../../../global/constants";
 
 export default {
   walk(phaserScene) {
@@ -8,16 +8,16 @@ export default {
       this._movePlayer(phaserScene, "L");
     } else {
       this._pausePlayer(phaserScene);
-    }  
+    }
   },
 
   jump(phaserScene) {
     if (phaserScene.baseGameplayCursor.up.isDown && phaserScene.player.sprite.body.blocked.down) {
-        phaserScene.player.sprite.setVelocityY(-300);
-        phaserScene.player.sprite.anims.play("jump", true);
+      phaserScene.player.sprite.setVelocityY(-300);
+      phaserScene.player.sprite.anims.play("walk", true); 
     }
   },
-  
+
   chooseAnswer() {},
 
   _pausePlayer(phaserScene) {
@@ -31,5 +31,5 @@ export default {
     phaserScene.player.sprite.setVelocityX(speed * signal);
     phaserScene.player.sprite.body.blocked.down && phaserScene.player.sprite.anims.play("walk", true);
     phaserScene.player.sprite.flipX = SENSE == "R" ? true : false;
-  }
+  },
 };

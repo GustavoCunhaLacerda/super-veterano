@@ -13,11 +13,10 @@ export default class Luiz {
     addControlKeys(phaserScene);
 
     this.sprite = phaserScene.physics.add
-      .sprite(36*16, 36*16)
+      .sprite(36 * 16, 36 * 16)
       .setSize(10, 15)
       .setOffset(6, 8)
       .setScale(2.5);
-    console.log(this.sprite);
   }
 
   handleGameplay() {
