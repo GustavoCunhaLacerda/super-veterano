@@ -27,12 +27,12 @@ export default class DhiegoLevel extends Phaser.Scene {
     this.physics.add.collider(dhiego.sprite, this.layer);
 
     this.physics.add.overlap(this.player.sprite, dhiego.sprite, () => {
-      this.scene.start("alessandralevel");
+      this.scene.start("question");
     });
 
 
-    const lad = this.physics.add.image(0, 0, "Sprites.itens.ladder").setScale(0.2);
-    lad.body.setCollideWorldBounds();
+    // const lad = this.physics.add.image(0, 0, "Sprites.itens.ladder").setScale(0.2);
+    // lad.body.setCollideWorldBounds();
     // this.ladderGroup = this.physics.add.group()
     // this.ladderGroup.add(lad);
     // this.physics.add.collider()
