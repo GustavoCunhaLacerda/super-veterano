@@ -16,7 +16,7 @@ export default class Luiz {
       .sprite(36 * 16, 36 * 16)
       .setSize(10, 15)
       .setOffset(6, 8)
-      .setScale(2.5);
+      .setScale(2.0);
   }
 
   handleGameplay() {

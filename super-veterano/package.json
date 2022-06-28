@@ -25,6 +25,8 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "csv": "^6.1.3",
+    "fs": "^0.0.1-security",
     "phaser": "^3.50.0"
   }
 }

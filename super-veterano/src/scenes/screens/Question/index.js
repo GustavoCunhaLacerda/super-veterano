@@ -1,9 +1,10 @@
 import Phaser from "phaser";
 import { getQuestion } from "./question_bank";
 
+
 export default class Question extends Phaser.Scene {
   constructor() {
-    super("question");
+    super({ key: "question" });
   }
 
   preload() {}
@@ -13,13 +14,15 @@ export default class Question extends Phaser.Scene {
 
     this.checkAnswer = (answer, index) => {
       if (answer === question.options[index]) {
-        this.scene.start("dhiegolevel");
+        this.scene.stop("question").wake("dhiegolevel");
       } else {
-        this.scene.start("mainmenu");
+        this.scene.start("gameover");
       }
     };
 
     const question = getQuestion();
+
+    getQuestion();
 
     const questionText = this.add
       .text(300, 300, question.question, {

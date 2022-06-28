@@ -1,4 +1,5 @@
 import Textures16 from "../../../assets/tiles/Textures-16.png";
+import TexturesSimple from "../../../assets/tiles/tilesetplain_16x16_blue.png";
 import bg from "../../../assets/backgrounds/leveld_Bg.jpg";
 import IFBEntrance from "../../../assets/backgrounds/fachada-ifb-2.png";
 import loadingSprite from "../../../assets/ui/wenrexa/Progress03.png";
@@ -20,6 +21,7 @@ export default class Boot extends Phaser.Scene {
   preload() {
     this.load.image("Background.default", bg);
     this.load.image("Textures.default", Textures16);
+    this.load.image("Textures.simple", TexturesSimple);
     this.load.image("Background.menu", IFBEntrance);
     this.load.image("Interface.button.base", buttonBase);
     this.load.image("Interface.logo.title", logoTitle);
