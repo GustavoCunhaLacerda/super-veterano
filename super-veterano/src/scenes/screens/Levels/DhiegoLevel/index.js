@@ -3,6 +3,8 @@ import Luiz from "../../../game_objects/player/Luiz";
 import Dhiego from "../../../game_objects/enemies/bosses/Dhiego";
 import addUiButton from "../../../components/UiButton";
 
+import { AlignGrid } from "../../../../utils/gridAlign";
+import { game } from "../../../..";
 export default class DhiegoLevel extends Phaser.Scene {
   constructor() {
     super({ key: "dhiegolevel" });
@@ -39,6 +41,22 @@ export default class DhiegoLevel extends Phaser.Scene {
     addUiButton(this, 300, 300, "teste questao", () => {
       this.scene.sleep("dhiegolevel").run("question");
     });
+
+    let gridConfig = {
+      scene: this,
+      cols: 38,
+      rows: 38,
+    };
+    this.aGrid = new AlignGrid(gridConfig);
+    this.aGrid.show();
+    this.aGrid.showNumbers();
+
+    this.ladder = this.add.image(0, 0, "Sprites.itens.ladder");
+
+    // this.aGrid.placeAt(2, 2, this.ladder);
+    // this.ladder.displayWidth = game.config.width / 38;
+    // this.ladder.scaleY = this.face.scaleX;
+    this.aGrid.placeAtIndex(860, this.ladder);
   }
 
   update() {
