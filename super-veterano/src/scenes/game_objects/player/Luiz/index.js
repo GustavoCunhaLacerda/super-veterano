@@ -12,15 +12,11 @@ export default class Luiz {
 
     addControlKeys(phaserScene);
 
-    this.sprite = phaserScene.physics.add
-      .sprite(36 * 16, 36 * 16)
-      .setSize(10, 15)
-      .setOffset(6, 8)
-      .setScale(2.0);
+    this.sprite = phaserScene.physics.add.sprite(0, 0, "Sprites.player.luiz.idle");
   }
 
-  handleGameplay() {
-    playerControls.jump(this.phaserScene);
-    playerControls.walk(this.phaserScene);
+  handleGameplay(phaserScene) {
+    playerControls.jump(phaserScene);
+    playerControls.walk(phaserScene);
   }
 }

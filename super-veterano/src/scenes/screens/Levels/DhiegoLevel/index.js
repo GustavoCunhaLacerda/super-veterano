@@ -18,49 +18,62 @@ export default class DhiegoLevel extends Phaser.Scene {
   create() {
     this.bg_map = this.make.tilemap({ key: "dhiegobg", tileWidth: 16, tileHeight: 16 });
     this.bg_tileset = this.bg_map.addTilesetImage("Textures.simple");
-
     this.map = this.make.tilemap({ key: "dhiegomap", tileWidth: 16, tileHeight: 16 });
     this.tileset = this.map.addTilesetImage("Textures.simple");
     this.bg_layer = this.bg_map.createLayer(0, this.tileset, 0, 0);
     this.layer = this.map.createLayer(0, this.tileset, 0, 0);
-
     this.map.setCollisionBetween(0, 10);
-
-    this.player = new Luiz(this);
-    const dhiego = new Dhiego(this);
-
-    this.player.sprite.setCollideWorldBounds(true);
-
-    this.physics.add.collider(this.player.sprite, this.layer);
-    this.physics.add.collider(dhiego.sprite, this.layer);
-
-    this.physics.add.overlap(this.player.sprite, dhiego.sprite, () => {
-      this.scene.sleep("dhiegolevel").run("question");
-    });
-
-    addUiButton(this, 300, 300, "teste questao", () => {
-      this.scene.sleep("dhiegolevel").run("question");
-    });
 
     let gridConfig = {
       scene: this,
-      cols: 38,
-      rows: 38,
+      cols: 20,
+      rows: 20,
     };
+
     this.aGrid = new AlignGrid(gridConfig);
     this.aGrid.show();
     this.aGrid.showNumbers();
 
-    this.ladder = this.add.image(0, 0, "Sprites.itens.ladder");
+    this.ladderGroup = this.physics.add.group({
+      // immovable: true,
+      allowGravity: false,
+    });
 
-    // this.aGrid.placeAt(2, 2, this.ladder);
-    // this.ladder.displayWidth = game.config.width / 38;
-    // this.ladder.scaleY = this.face.scaleX;
-    this.aGrid.placeAtIndex(860, this.ladder);
+    
+    this.player = new Luiz(this);
+    this.player.sprite.setCollideWorldBounds(true);
+    this.physics.add.collider(this.player.sprite, this.layer);
+    this.aGrid.placeAtIndex(379, this.player.sprite);
+    
+    [280, 300, 320, 340].forEach((pos) => {
+      this.makeLadder(pos, "Sprites.itens.ladder");
+    });
+
+
+    this.physics.add.overlap(this.player.sprite, this.ladderGroup);
+  }
+
+  makeLadder(pos, key) {
+    let obj = this.physics.add.image(0, 0, key);
+    this.aGrid.scaleToGameW(obj);
+    this.aGrid.placeAtIndex(pos, obj);
+    this.ladderGroup.add(obj);
+  }
+
+  checkLadder() {
+    this.onLadder = false;
+    this.ladderGroup.children.iterate(
+      function (child) {
+        if (!child.body.touching.none) {
+          this.onLadder = true;
+        }
+      }.bind(this)
+    );
+    console.log(this.onLadder);
   }
 
   update() {
     this.baseGameplayCursor = this.input.keyboard.createCursorKeys();
-    this.player.handleGameplay();
+    this.player.handleGameplay(this);
   }
 }

@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import constants from "../../../global/constants";
 import addUiButton from "../../components/UiButton";
 
 export default class MainMenu extends Phaser.Scene {
@@ -9,14 +10,13 @@ export default class MainMenu extends Phaser.Scene {
   preload() {}
 
   create() {
-    this.add.image(300, 300, "Background.menu").setScale(5);
+    this.add.image(constants.WINDOW_HEIGHT / 2, constants.WINDOW_HEIGHT / 2, "Background.menu").setScale(2.5);
 
-    addUiButton(this, 304, 454, "INICIAR", () => {
+    addUiButton(this, constants.WINDOW_HEIGHT / 2, 50 + constants.WINDOW_HEIGHT / 2, "INICIAR", () => {
       this.scene.start("dhiegolevel");
-      // this.scene.launch("question");
     });
 
-    addUiButton(this, 304, 524, "CRÉDITOS", () => {
+    addUiButton(this, constants.WINDOW_HEIGHT / 2, 100 + constants.WINDOW_HEIGHT / 2, "CRÉDITOS", () => {
       this.scene.start("credits");
     });
   }

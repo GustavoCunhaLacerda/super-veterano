@@ -12,13 +12,17 @@ export default {
   },
 
   jump(phaserScene) {
-    if (phaserScene.baseGameplayCursor.up.isDown && phaserScene.player.sprite.body.blocked.down) {
-      phaserScene.player.sprite.setVelocityY(-300);
-      phaserScene.player.sprite.anims.play("walk", true); 
+    if (phaserScene.baseGameplayCursor.up.isDown) {
+      console.log(phaserScene.checkLadder());
+      phaserScene.checkLadder();
+      if (phaserScene.onLadder == true) {
+        phaserScene.player.sprite.setVelocityY(-100);
+      } else if (phaserScene.player.sprite.body.blocked.down) {
+        phaserScene.player.sprite.setVelocityY(-150);
+        phaserScene.player.sprite.anims.play("jump", true);
+      }
     }
   },
-
-  chooseAnswer() {},
 
   _pausePlayer(phaserScene) {
     phaserScene.player.sprite.setVelocityX(0);

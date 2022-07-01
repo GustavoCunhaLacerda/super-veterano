@@ -27,9 +27,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image("Interface.logo.title", logoTitle);
     this.load.image("Interface.logo.subtitle", logoSubtitle);
 
-    this.load.spritesheet("Sprites.player.luiz.idle", luizAnims.luiz_idle, { frameWidth: 23, frameHeight: 23 });
-    this.load.spritesheet("Sprites.player.luiz.walk", luizAnims.luiz_walk, { frameWidth: 23, frameHeight: 23 });
-    this.load.spritesheet("Sprites.player.luiz.jump", luizAnims.luiz_jump, { frameWidth: 23, frameHeight: 23 });
+    this.load.spritesheet("Sprites.player.luiz.idle", luizAnims.luiz_idle, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet("Sprites.player.luiz.walk", luizAnims.luiz_walk, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet("Sprites.player.luiz.jump", luizAnims.luiz_jump, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet("Sprites.enemies.dhiego.writing", dhiegoAnims.dhiego_writing, { frameWidth: 42, frameHeight: 48 });
     this.load.spritesheet("Sprites.enemies.alessandra.writing", alessandraAnims.alessandra_writing, { frameWidth: 42, frameHeight: 48 });
 
