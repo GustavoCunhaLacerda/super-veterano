@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"tilesetplain_16x16_blue.png",
+ "imageheight":128,
+ "imagewidth":128,
+ "margin":0,
+ "name":"tilesetplain_16x16_blue",
+ "spacing":0,
+ "tilecount":64,
+ "tiledversion":"1.8.5",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.8"
+}
