@@ -1,39 +1,39 @@
 import constants from "../../../../../global/constants";
 
 export default {
-  walk(phaserScene) {
+  walk(phaserScene, sprite) {
     if (phaserScene.baseGameplayCursor.left.isDown) {
-      this._movePlayer(phaserScene, "R");
+      this._movePlayer(sprite, "R");
     } else if (phaserScene.baseGameplayCursor.right.isDown) {
-      this._movePlayer(phaserScene, "L");
+      this._movePlayer(sprite, "L");
     } else {
-      this._pausePlayer(phaserScene);
+      this._pausePlayer(sprite);
     }
   },
 
-  jump(phaserScene) {
+  jump(phaserScene, sprite) {
     if (phaserScene.baseGameplayCursor.up.isDown) {
-      console.log(phaserScene.checkLadder());
+      sprite.anims.play("jump", true);
       phaserScene.checkLadder();
+      console.log(phaserScene.onLadder);
       if (phaserScene.onLadder == true) {
-        phaserScene.player.sprite.setVelocityY(-100);
-      } else if (phaserScene.player.sprite.body.blocked.down) {
-        phaserScene.player.sprite.setVelocityY(-150);
-        phaserScene.player.sprite.anims.play("jump", true);
+        sprite.setVelocityY(-100);
+      } else if (sprite.body.blocked.down) {
+        sprite.setVelocityY(-180);
       }
     }
   },
 
-  _pausePlayer(phaserScene) {
-    phaserScene.player.sprite.setVelocityX(0);
-    phaserScene.player.sprite.anims.play("idle", true);
+  _pausePlayer(sprite) {
+    sprite.setVelocityX(0);
+    sprite.anims.play("idle", true);
   },
 
-  _movePlayer(phaserScene, SENSE) {
+  _movePlayer(sprite, SENSE) {
     const signal = SENSE == "R" ? -1 : 1;
     const speed = constants.PLAYER_X_MOVESPEED;
-    phaserScene.player.sprite.setVelocityX(speed * signal);
-    phaserScene.player.sprite.body.blocked.down && phaserScene.player.sprite.anims.play("walk", true);
-    phaserScene.player.sprite.flipX = SENSE == "R" ? true : false;
+    sprite.setVelocityX(speed * signal);
+    sprite.body.blocked.down && sprite.anims.play("walk", true);
+    sprite.flipX = SENSE == "R" ? true : false;
   },
 };

@@ -9,6 +9,6 @@ export default {
 
   // physics
   PHYSICS_TYPE: "arcade",
-  GRAVITY_Y: 400,
-  PLAYER_X_MOVESPEED: 100,
+  GRAVITY_Y: 600,
+  PLAYER_X_MOVESPEED: 70,
 }

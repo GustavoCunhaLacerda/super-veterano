@@ -14,9 +14,9 @@ export default class TextHitory extends Phaser.Scene {
     this.cameras.main.setBackgroundColor("#000000");
 
     const hist = this.add
-      .text(300, 300, "...", {
+      .text(160, 160, "...", {
         fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
-        fontSize: "32px",
+        fontSize: "16px",
         color: "#ffffff",
       })
       .setOrigin(0.5);

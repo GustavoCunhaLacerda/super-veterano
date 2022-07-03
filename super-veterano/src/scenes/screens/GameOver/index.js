@@ -13,16 +13,12 @@ export default class GameOver extends Phaser.Scene {
 
     // add gameover text
     const gameOverText = this.add
-      .text(300, 300, "Game Over", {
+      .text(160, 160, "LUIZ FOI JUBILADO", {
         fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
-        fontSize: "32px",
+        fontSize: "16px",
         color: "#ffffff",
       })
       .setOrigin(0.5);
-
-    addUiButton(this, 304, 454, "REINICIAR", () => {
-      this.scene.start("mainmenu");
-    });
   }
 
   update() {}

@@ -7,11 +7,15 @@ import buttonBase from "../../../assets/ui/wenrexa/Button18.png";
 import logoTitle from "../../../assets/ui/logo-title.png";
 import logoSubtitle from "../../../assets/ui/logo-subtitle.png";
 
+import beeAnims from "../../../scenes/game_objects/enemies/common/assets/bee_idle.png";
+
 import luizAnims from "../../game_objects/player/Luiz/assets/animations";
 import dhiegoAnims from "../../game_objects/enemies/bosses/Dhiego/animations";
 import alessandraAnims from "../../game_objects/enemies/bosses/Alessandra/animations";
 
-import ladder from "../../../assets/itens/mine_ladder.png";
+import ladder from "../../../scenes/game_objects/platforms/Ladder/assets/mine_ladder.png";
+import ladder_up from "../../../scenes/game_objects/platforms/Ladder/assets/mine_ladder_upper.png";
+import ladder_bot from "../../../scenes/game_objects/platforms/Ladder/assets/mine_ladder_bottom.png";
 
 export default class Boot extends Phaser.Scene {
   constructor() {
@@ -32,8 +36,11 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet("Sprites.player.luiz.jump", luizAnims.luiz_jump, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet("Sprites.enemies.dhiego.writing", dhiegoAnims.dhiego_writing, { frameWidth: 42, frameHeight: 48 });
     this.load.spritesheet("Sprites.enemies.alessandra.writing", alessandraAnims.alessandra_writing, { frameWidth: 42, frameHeight: 48 });
+    this.load.spritesheet("Sprites.enemies.bee.idle", beeAnims, { frameWidth: 16, frameHeight: 20 });
 
     this.load.image("Sprites.itens.ladder", ladder);
+    this.load.image("Sprites.itens.ladderTop", ladder_up);
+    this.load.image("Sprites.itens.ladderBot", ladder_bot);
 
     this.load.image("loading", loadingSprite);
 
@@ -52,6 +59,7 @@ export default class Boot extends Phaser.Scene {
 
     this.load.on("complete", () => {
       this.scene.start("mainmenu");
+      // this.scene.start("question");
     });
   }
 

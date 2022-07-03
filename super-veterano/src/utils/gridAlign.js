@@ -63,7 +63,7 @@ export class AlignGrid {
     }
   }
 
-  placeAt(xx, yy, obj, scale = 1) {
+  placeAt(xx, yy, obj) {
     let x2 = this.cw * xx + this.cw / 2;
     let y2 = this.ch * yy + this.ch / 2;
     obj.x = x2;
@@ -77,7 +77,7 @@ export class AlignGrid {
   }
 
   scaleToGameW(obj, scale = 1) {
-    obj.displayWidth = game.config.width / 20 * scale;
+    obj.displayWidth = scale * game.config.width / 20;
     obj.scaleY = obj.scaleX;
   }
 }
