@@ -1,15 +1,12 @@
-import Phaser from "phaser";
 import Luiz from "../../../game_objects/player/Luiz";
-import Dhiego from "../../../game_objects/enemies/bosses/Dhiego";
-import addUiButton from "../../../components/UiButton";
+import BaseLevel from "../BaseLevel";
 
-import { AlignGrid } from "../../../../utils/gridAlign";
-import { game } from "../../../..";
 import { makeLadder } from "../../../game_objects/platforms/Ladder";
 import Bee from "../../../game_objects/enemies/common/bee";
-export default class DhiegoLevel extends Phaser.Scene {
+
+export default class DhiegoLevel extends BaseLevel {
   constructor() {
-    super({ key: "dhiegolevel" });
+    super("dhiegolevel", true);
   }
 
   preload() {
@@ -26,15 +23,7 @@ export default class DhiegoLevel extends Phaser.Scene {
     this.layer = this.map.createLayer(0, this.tileset, 0, 0);
     this.map.setCollisionBetween(0, 10);
 
-    let gridConfig = {
-      scene: this,
-      cols: 20,
-      rows: 20,
-    };
-
-    this.customGrid = new AlignGrid(gridConfig);
-    // this.customGrid.show();
-    // this.customGrid.showNumbers();
+    this.useGrid();
 
     makeLadder(this, [281, 341]);
     makeLadder(this, [159, 239]);
@@ -50,39 +39,39 @@ export default class DhiegoLevel extends Phaser.Scene {
     [265, 274, 367].forEach((pos) => {
       this.makeEnemy(pos, Bee);
     });
-  }
 
-  makeEnemy(pos, EnemyClass) {
-    const enemyObject = new EnemyClass(this);
-    const enemyBody = enemyObject.invokeEnemyCharacter();
-    this.customGrid.scaleToGameW(enemyBody, 0.5);
-    this.customGrid.placeAtIndex(pos, enemyBody);
-
-    this.physics.add.overlap(
+    this.zone = this.add.zone(0,0).setSize(10, 10);
+    this.customGrid.placeAtIndex(39, this.zone);
+    this.physics.world.enable(this.zone, 0); // (0) DYNAMIC (1) STATIC
+    this.zone.body.setAllowGravity(false);
+    this.zone.body.moves = false;
+    // this.customGrid.placeAtIndex(372, this.zone);
+    this.physics.add.overlap(this.playableCharacter, this.zone);
+    this.physics.add.collider(
       this.playableCharacter,
-      enemyBody,
+      this.layer,
       () => {
-        this.scene.sleep("dhiegolevel").run("question", { enemy: enemyObject, player: this.playerObject });
+        console.log("enterzone")
       },
       null,
       this
     );
-  }
-
-  checkLadder() {
-    this.onLadder = false;
-    this.ladderGroup.children.iterate(
-      function (child) {
-        if (!child.body.touching.none) {
-          this.onLadder = true;
-        }
-      }.bind(this)
-    );
-    console.log(this.onLadder);
+    this.zone.body.debugBodyColor = 0x00ffff;
+    this.zone.on("enterzone", () => this.scene.start("dhiegolevel2"));
   }
 
   update() {
-    this.baseGameplayCursor = this.input.keyboard.createCursorKeys();
-    this.playerObject.handleGameplay(this, this.playableCharacter);
+    var touching = this.zone.body.touching;
+    var wasTouching = this.zone.body.wasTouching;
+    
+    if (touching.none && !wasTouching.none) {
+      this.zone.emit('leavezone');
+    }
+    else if (!touching.none && wasTouching.none) {
+      this.zone.emit('enterzone');
+    }
+    
+    this.zone.body.debugBodyColor = this.zone.body.touching.none ? 0x00ffff : 0xffff00;
+    this.gameplayHandler();
   }
 }
