@@ -3,6 +3,7 @@ import BaseLevel from "../BaseLevel";
 
 import { makeLadder } from "../../../game_objects/platforms/Ladder";
 import Bee from "../../../game_objects/enemies/common/bee";
+import Dog from "../../../game_objects/enemies/common/dog";
 
 let count = 0;
 let signal = -1;
@@ -56,9 +57,9 @@ export default class DhiegoLevel extends BaseLevel {
     this.customGrid.placeAtIndex(379, this.playableCharacter);
 
     // ------------------------------------------------- //
-    
-    [265, 274, 367].forEach((pos) => {
-      enemies_list.push(this.makeEnemy(pos, Bee));
+
+    [{pos:265, enemy: Dog}, {pos:274, enemy: Dog}, {pos:367, enemy: Bee}].forEach(({pos, enemy}) => {
+      enemies_list.push(this.makeEnemy(pos, enemy));
     });
 
     zone = this.add.zone(0, 0).setSize(10, 10);
@@ -93,13 +94,14 @@ export default class DhiegoLevel extends BaseLevel {
     this.gameplayHandler();
 
     count++;
-    console.log(count);
+    // console.log(count);
     if (count > 200) {
       count = 0;
       signal *= -1;
     }
     enemies_list.forEach((enemy) => {
-      enemy.handleBeeMoves(count, signal);
+
+      // enemy.handleBeeMoves(count, signal);
     });
   }
 }

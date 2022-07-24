@@ -8,6 +8,7 @@ import logoTitle from "../../../assets/ui/logo-title.png";
 import logoSubtitle from "../../../assets/ui/logo-subtitle.png";
 
 import beeAnims from "../../../scenes/game_objects/enemies/common/assets/bee_idle.png";
+import dogAnims from "../../../scenes/game_objects/enemies/common/assets/dog_idle.png";
 
 import luizAnims from "../../game_objects/player/Luiz/assets/animations";
 import dhiegoAnims from "../../game_objects/enemies/bosses/Dhiego/animations";
@@ -37,6 +38,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet("Sprites.enemies.dhiego.writing", dhiegoAnims.dhiego_writing, { frameWidth: 42, frameHeight: 48 });
     this.load.spritesheet("Sprites.enemies.alessandra.writing", alessandraAnims.alessandra_writing, { frameWidth: 42, frameHeight: 48 });
     this.load.spritesheet("Sprites.enemies.bee.idle", beeAnims, { frameWidth: 16, frameHeight: 20 });
+    this.load.spritesheet("Sprites.enemies.dog.idle", dogAnims, { frameWidth: 16, frameHeight: 16 });
 
     this.load.image("Sprites.itens.ladder", ladder);
     this.load.image("Sprites.itens.ladderTop", ladder_up);

@@ -22,7 +22,7 @@ export default class BaseLevel extends Phaser.Scene {
     }
   }
 
-  makeEnemy(pos, EnemyClass, scale = 0.5) {
+  makeEnemy(pos, EnemyClass, scale = 1) {
     const enemyObject = new EnemyClass(this);
     const enemyBody = enemyObject.invokeEnemyCharacter();
     this.customGrid.scaleToGameW(enemyBody, scale);

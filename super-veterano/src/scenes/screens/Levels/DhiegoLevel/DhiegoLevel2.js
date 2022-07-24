@@ -79,14 +79,14 @@ export default class DhiegoLevel2 extends BaseLevel {
     this.gameplayHandler();
 
     count++;
-    console.log(count);
+    // console.log(count);
     if (count > 200) {
       count = 0;
       signal *= -1;
     }
     this.enemies_list2?.forEach((enemy) => {
       enemy.handleBeeMoves(count, signal);
-      console.log(enemy);
+      // console.log(enemy);
     });
   }
 }
