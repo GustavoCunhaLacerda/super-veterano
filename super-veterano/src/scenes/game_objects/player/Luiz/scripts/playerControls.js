@@ -19,7 +19,7 @@ export default {
       if (phaserScene.onLadder == true) {
         sprite.setVelocityY(-100);
       } else if (sprite.body.blocked.down) {
-        sprite.setVelocityY(-180);
+        sprite.setVelocityY(-200);
       }
     }
   },

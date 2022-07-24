@@ -60,7 +60,7 @@ export default class Boot extends Phaser.Scene {
     });
 
     this.load.on("complete", () => {
-       this.scene.start("dhiegoLevel4");
+       this.scene.start("mainmenu");
       // this.scene.start("question");
     });
   }
