@@ -4,9 +4,25 @@ import BaseLevel from "../BaseLevel";
 import { makeLadder } from "../../../game_objects/platforms/Ladder";
 import Bee from "../../../game_objects/enemies/common/bee";
 
+let count = 0;
+let signal = -1;
+
+var touching;
+var wasTouching;
+
+let bg_map;
+let bg_tileset;
+let map;
+let tileset;
+let bg_layer;
+let layer;
+
+let enemies_list = [];
+let zone;
+
 export default class DhiegoLevel extends BaseLevel {
   constructor() {
-    super("dhiegolevel", true);
+    super("dhiegolevel", false);
   }
 
   preload() {
@@ -15,13 +31,16 @@ export default class DhiegoLevel extends BaseLevel {
   }
 
   create() {
-    this.bg_map = this.make.tilemap({ key: "dhiegobg", tileWidth: 16, tileHeight: 16 });
-    this.bg_tileset = this.bg_map.addTilesetImage("Textures.simple");
-    this.map = this.make.tilemap({ key: "dhiegomap", tileWidth: 16, tileHeight: 16 });
-    this.tileset = this.map.addTilesetImage("Textures.simple");
-    this.bg_layer = this.bg_map.createLayer(0, this.tileset, 0, 0);
-    this.layer = this.map.createLayer(0, this.tileset, 0, 0);
-    this.map.setCollisionBetween(0, 10);
+    // ------------------------------------------------- //
+    bg_map = this.make.tilemap({ key: "dhiegobg", tileWidth: 16, tileHeight: 16 });
+    bg_tileset = bg_map.addTilesetImage("Textures.simple");
+    bg_layer = bg_map.createLayer(0, bg_tileset, 0, 0);
+
+    map = this.make.tilemap({ key: "dhiegomap", tileWidth: 16, tileHeight: 16 });
+    tileset = map.addTilesetImage("Textures.simple");
+    layer = map.createLayer(0, tileset, 0, 0);
+
+    map.setCollisionBetween(0, 10);
 
     this.useGrid();
 
@@ -32,46 +51,55 @@ export default class DhiegoLevel extends BaseLevel {
     this.playerObject = new Luiz(this);
     this.playableCharacter = this.playerObject.invokePlayableCharacter();
     this.playableCharacter.setCollideWorldBounds(true);
-    this.physics.add.collider(this.playableCharacter, this.layer);
+    this.physics.add.collider(this.playableCharacter, layer);
     this.physics.add.overlap(this.playableCharacter, this.ladderGroup);
     this.customGrid.placeAtIndex(379, this.playableCharacter);
 
+    // ------------------------------------------------- //
+    
     [265, 274, 367].forEach((pos) => {
-      this.makeEnemy(pos, Bee);
+      enemies_list.push(this.makeEnemy(pos, Bee));
     });
 
-    this.zone = this.add.zone(0,0).setSize(10, 10);
-    this.customGrid.placeAtIndex(39, this.zone);
-    this.physics.world.enable(this.zone, 0); // (0) DYNAMIC (1) STATIC
-    this.zone.body.setAllowGravity(false);
-    this.zone.body.moves = false;
-    // this.customGrid.placeAtIndex(372, this.zone);
-    this.physics.add.overlap(this.playableCharacter, this.zone);
+    zone = this.add.zone(0, 0).setSize(10, 10);
+    this.customGrid.placeAtIndex(39, zone);
+    this.physics.world.enable(zone, 0);
+    zone.body.setAllowGravity(false);
+    zone.body.moves = false;
+    // this.customGrid.placeAtIndex(372, zone);
+    this.physics.add.overlap(this.playableCharacter, zone);
     this.physics.add.collider(
       this.playableCharacter,
-      this.layer,
+      layer,
       () => {
-        console.log("enterzone")
+        console.log("enterzone");
       },
       null,
       this
     );
-    this.zone.body.debugBodyColor = 0x00ffff;
-    this.zone.on("enterzone", () => this.scene.start("dhiegolevel2"));
+    zone.body.debugBodyColor = 0x00ffff;
+    zone.on("enterzone", () => this.scene.start("dhiegolevel2"));
   }
 
   update() {
-    var touching = this.zone.body.touching;
-    var wasTouching = this.zone.body.wasTouching;
-    
-    if (touching.none && !wasTouching.none) {
-      this.zone.emit('leavezone');
+    touching = zone.body.touching;
+    wasTouching = zone.body.wasTouching;
+
+    if (!touching.none && wasTouching.none) {
+      zone.emit("enterzone");
     }
-    else if (!touching.none && wasTouching.none) {
-      this.zone.emit('enterzone');
-    }
-    
-    this.zone.body.debugBodyColor = this.zone.body.touching.none ? 0x00ffff : 0xffff00;
+
+    zone.body.debugBodyColor = zone.body.touching.none ? 0x00ffff : 0xffff00;
     this.gameplayHandler();
+
+    count++;
+    console.log(count);
+    if (count > 200) {
+      count = 0;
+      signal *= -1;
+    }
+    enemies_list.forEach((enemy) => {
+      enemy.handleBeeMoves(count, signal);
+    });
   }
 }

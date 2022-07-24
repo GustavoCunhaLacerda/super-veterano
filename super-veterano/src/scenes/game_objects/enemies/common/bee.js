@@ -17,6 +17,15 @@ export default class Bee {
     return sprite;
   }
 
+  handleBeeMoves(countAux, signal) {
+    this.body.flipX = signal == 1 ? true : false;
+    try {
+      this.body.setVelocityX(10 * signal);
+    } catch (error) {
+      console.log("erro no movimento da abelha");
+    }
+  }
+
   invokeEnemyTotem(phaserScene) {
     const totem = phaserScene.physics.add.sprite(0, 0, "Sprites.enemies.bee.idle");
     totem.anims.play("bee_idle", true);

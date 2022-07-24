@@ -6,9 +6,15 @@ import Dhiego from "../../../game_objects/enemies/bosses/Dhiego";
 import { makeLadder } from "../../../game_objects/platforms/Ladder";
 import Bee from "../../../game_objects/enemies/common/bee";
 
+let count = 0;
+let signal = -1;
+
+var touching;
+var wasTouching;
+
 export default class DhiegoLevel3 extends BaseLevel {
   constructor() {
-    super("dhiegolevel3", true);
+    super("dhiegolevel3", false);
   }
 
   preload() {
@@ -41,44 +47,31 @@ export default class DhiegoLevel3 extends BaseLevel {
     this.physics.add.overlap(this.playableCharacter, this.ladderGroup);
     this.customGrid.placeAtIndex(359, this.playableCharacter);
 
-    [276, 196, 189].forEach((pos) => {
-      this.makeEnemy(pos, Bee);
+    this.enemies_list3 = [];
+    [276, 196, 189].forEach((pos, index) => {
+      this.enemies_list3.push(this.makeEnemy(pos, Bee));
     });
 
     const deego = new Dhiego(this);
     this.customGrid.placeAtIndex(49, deego.sprite);
     this.customGrid.scaleToGameW(deego.sprite, 2.5);
     this.physics.add.collider(deego.sprite, this.layer);
-    // this.zone = this.add.zone(0, 0).setSize(10, 10);
-    // this.customGrid.placeAtIndex(379, this.zone);
-    // this.physics.world.enable(this.zone, 0); // (0) DYNAMIC (1) STATIC
-    // this.zone.body.setAllowGravity(false);
-    // this.zone.body.moves = false;
-    // this.physics.add.overlap(this.playableCharacter, this.zone);
-    // this.physics.add.collider(
-    //   this.playableCharacter,
-    //   this.layer,
-    //   () => {
-    //     console.log("enterzone");
-    //   },
-    //   null,
-    //   this
-    // );
-    // this.zone.body.debugBodyColor = 0x00ffff;
-    // this.zone.on("enterzone", () => this.scene.start("mainmenu"));
   }
 
   update() {
-    // var touching = this.zone.body.touching;
-    // var wasTouching = this.zone.body.wasTouching;
-
-    // if (touching.none && !wasTouching.none) {
-    //   this.zone.emit("leavezone");
-    // } else if (!touching.none && wasTouching.none) {
-    //   this.zone.emit("enterzone");
-    // }
-
-    // this.zone.body.debugBodyColor = this.zone.body.touching.none ? 0x00ffff : 0xffff00;
+    // touching = this.zone.body.touching;
+    // wasTouching = this.zone.body.wasTouching;
+    
     this.gameplayHandler();
+    count++;
+    console.log(count);
+    if (count > 200) {
+      count = 0;
+      signal *= -1;
+    }
+    this.enemies_list3?.forEach((enemy) => {
+      enemy.handleBeeMoves(count, signal);
+      console.log(enemy);
+    });
   }
 }
