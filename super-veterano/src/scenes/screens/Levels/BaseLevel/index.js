@@ -37,6 +37,8 @@ export default class BaseLevel extends Phaser.Scene {
       null,
       this
     );
+
+    return enemyObject;
   }
 
   checkLadder() {

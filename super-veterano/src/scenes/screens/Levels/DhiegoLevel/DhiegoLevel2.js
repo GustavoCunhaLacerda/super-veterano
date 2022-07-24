@@ -4,9 +4,14 @@ import BaseLevel from "../BaseLevel";
 import { makeLadder } from "../../../game_objects/platforms/Ladder";
 import Bee from "../../../game_objects/enemies/common/bee";
 
+let count = 0;
+let signal = -1;
+
+var touching;
+var wasTouching;
 export default class DhiegoLevel2 extends BaseLevel {
   constructor() {
-    super("dhiegolevel2", true);
+    super("dhiegolevel2", false);
   }
 
   preload() {
@@ -36,8 +41,9 @@ export default class DhiegoLevel2 extends BaseLevel {
     this.physics.add.overlap(this.playableCharacter, this.ladderGroup);
     this.customGrid.placeAtIndex(20, this.playableCharacter);
 
+    this.enemies_list2 = [];
     [267, 370, 321].forEach((pos) => {
-      this.makeEnemy(pos, Bee);
+      this.enemies_list2.push(this.makeEnemy(pos, Bee));
     });
 
     this.zone = this.add.zone(0, 0).setSize(10, 10);
@@ -60,8 +66,8 @@ export default class DhiegoLevel2 extends BaseLevel {
   }
 
   update() {
-    var touching = this.zone.body.touching;
-    var wasTouching = this.zone.body.wasTouching;
+    touching = this.zone.body.touching;
+    wasTouching = this.zone.body.wasTouching;
 
     if (touching.none && !wasTouching.none) {
       this.zone.emit("leavezone");
@@ -71,5 +77,16 @@ export default class DhiegoLevel2 extends BaseLevel {
 
     this.zone.body.debugBodyColor = this.zone.body.touching.none ? 0x00ffff : 0xffff00;
     this.gameplayHandler();
+
+    count++;
+    console.log(count);
+    if (count > 200) {
+      count = 0;
+      signal *= -1;
+    }
+    this.enemies_list2?.forEach((enemy) => {
+      enemy.handleBeeMoves(count, signal);
+      console.log(enemy);
+    });
   }
 }
