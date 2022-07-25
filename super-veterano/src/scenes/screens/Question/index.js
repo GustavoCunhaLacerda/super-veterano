@@ -35,8 +35,8 @@ export default class Question extends Phaser.Scene {
       rows: 20,
     });
 
-    this.customGrid.show();
-    this.customGrid.showNumbers();
+    // this.customGrid.show();
+    // this.customGrid.showNumbers();
 
     this.playerTotem = this.playerObject.invokePlayerTotem(this);
     this.playerTotem.body.setAllowGravity(true);

@@ -11,25 +11,27 @@ export default class Luiz {
     playerAnimations.jumpAnimation(phaserScene, "Sprites.player.luiz.jump");
   }
 
-  invokePlayerTotem(phaserScene) {
+  invokePlayerTotem(phaserScene, life = true) {
     const totem = phaserScene.physics.add.sprite(0, 0, "Sprites.player.luiz.idle");
     totem.anims.play("idle", true);
     totem.body.setAllowGravity(false);
 
-    this.name = phaserScene.add.text(0, 0, `Luiz`, {
-      fontSize: "16px",
-      fill: "#000",
-      align: "center",
-    });
+    if (life) {
+      this.name = phaserScene.add.text(0, 0, `Luiz`, {
+        fontSize: "16px",
+        fill: "#000",
+        align: "center",
+      });
 
-    this.lifePointsText = phaserScene.add.text(0, 0, `${Luiz.lifePoints}/10`, {
-      fontSize: "16px",
-      fill: "#000",
-      align: "center",
-    });
+      this.lifePointsText = phaserScene.add.text(0, 0, `${Luiz.lifePoints}/10`, {
+        fontSize: "16px",
+        fill: "#000",
+        align: "center",
+      });
+      this.phaserScene.customGrid.placeAtIndex(3, this.name);
+      this.phaserScene.customGrid.placeAtIndex(23, this.lifePointsText);
+    }
 
-    this.phaserScene.customGrid.placeAtIndex(3, this.name);
-    this.phaserScene.customGrid.placeAtIndex(23, this.lifePointsText);
     return totem;
   }
 

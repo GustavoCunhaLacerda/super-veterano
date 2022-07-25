@@ -77,7 +77,7 @@ export default class DhiegoLevel8 extends BaseLevel {
     this.physics.world.enable(zone, 0);
     zone.body.setAllowGravity(false);
     zone.body.moves = false;
-    // this.customGrid.placeAtIndex(372, zone);
+    
     this.physics.add.overlap(this.playableCharacter, zone);
     this.physics.add.collider(
       this.playableCharacter,
