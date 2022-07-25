@@ -19,12 +19,12 @@ export default class Dog {
   }
 
   handleDogMoves(countAux, signal) {
-    //   this.body.flipX = signal == 1 ? true : false;
-    //   try {
-    //     this.body.setVelocityX(10 * signal);
-    //   } catch (error) {
-    //     console.log("erro no movimento do dog");
-    //   }
+      this.body.flipX = signal == 1 ? true : false;
+      try {
+        this.body.setVelocityX(10 * signal);
+      } catch (error) {
+        console.log("erro no movimento do dog");
+      }
   }
 
   invokeEnemyTotem(phaserScene) {

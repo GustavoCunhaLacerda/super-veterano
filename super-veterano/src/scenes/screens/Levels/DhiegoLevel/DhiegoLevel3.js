@@ -52,6 +52,12 @@ export default class DhiegoLevel3 extends BaseLevel {
       this.enemies_list3.push(this.makeEnemy(pos, Bee));
     });
 
+    
+    // this.enemies_list3_dog = [];
+    // [276, 196, 189].forEach((pos, index) => {
+    //   this.enemies_list3_dog.push(this.makeEnemy(pos, Bee));
+    // });
+
     const deego = new Dhiego(this);
     this.customGrid.placeAtIndex(49, deego.sprite);
     this.customGrid.scaleToGameW(deego.sprite, 2.5);
@@ -73,5 +79,9 @@ export default class DhiegoLevel3 extends BaseLevel {
       enemy.handleBeeMoves(count, signal);
       // console.log(enemy);
     });
-  }
+  //   this.enemies_list3_dog?.forEach((enemy) => {
+  //     enemy.handleDogMoves(count, signal);
+  //     // console.log(enemy);
+  //   });
+   }
 }

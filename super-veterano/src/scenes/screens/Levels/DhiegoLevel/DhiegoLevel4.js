@@ -63,8 +63,12 @@ export default class DhiegoLevel4 extends BaseLevel {
     // });
 
     this.enemies_list4 = [];
-    [23, 295, 216, 137].forEach((pos, index) => {
+    [216, 137].forEach((pos, index) => {
       this.enemies_list4.push(this.makeEnemy(pos, Bee));
+    });
+    this.enemies_list4_dog = [];
+    [23, 295 ].forEach((pos, index) => {
+      this.enemies_list4_dog.push(this.makeEnemy(pos, Dog));
     });
 
     zone = this.add.zone(0, 0).setSize(10, 10);
@@ -106,6 +110,11 @@ export default class DhiegoLevel4 extends BaseLevel {
     }
     this.enemies_list4?.forEach((enemy) => {
       enemy.handleBeeMoves(count, signal);
+      // console.log(enemy);
+    });
+    
+    this.enemies_list4_dog?.forEach((enemy) => {
+      enemy.handleDogMoves(count, signal);
       // console.log(enemy);
     });
   }
