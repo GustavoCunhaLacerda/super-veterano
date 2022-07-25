@@ -62,6 +62,11 @@ export default class DhiegoLevel6 extends BaseLevel {
     //   enemies_list.push(this.makeEnemy(pos, enemy));
     // });
 
+    this.enemies_list6 = [];
+    [353, 272, 263, 197, 109, 102].forEach((pos, index) => {
+      this.enemies_list6.push(this.makeEnemy(pos, Bee));
+    });
+
     zone = this.add.zone(0, 0).setSize(10, 10);
     this.customGrid.placeAtIndex(52, zone);
     this.physics.world.enable(zone, 0);
@@ -99,9 +104,9 @@ export default class DhiegoLevel6 extends BaseLevel {
       count = 0;
       signal *= -1;
     }
-    enemies_list.forEach((enemy) => {
-
-      // enemy.handleBeeMoves(count, signal);
+    this.enemies_list6?.forEach((enemy) => {
+      enemy.handleBeeMoves(count, signal);
+      // console.log(enemy);
     });
   }
 }

@@ -59,9 +59,10 @@ export default class DhiegoLevel5 extends BaseLevel {
 
     // ------------------------------------------------- //
 
-    // [{pos:265, enemy: Dog}, {pos:274, enemy: Dog}, {pos:367, enemy: Bee}].forEach(({pos, enemy}) => {
-    //   enemies_list.push(this.makeEnemy(pos, enemy));
-    // });
+    this.enemies_list5 = [];
+    [43, 52, 205, 216, 137].forEach((pos, index) => {
+      this.enemies_list5.push(this.makeEnemy(pos, Bee));
+    });
 
     zone = this.add.zone(0, 0).setSize(10, 10);
     this.customGrid.placeAtIndex(39, zone);
@@ -100,9 +101,9 @@ export default class DhiegoLevel5 extends BaseLevel {
       count = 0;
       signal *= -1;
     }
-    enemies_list.forEach((enemy) => {
-
-      // enemy.handleBeeMoves(count, signal);
+    this.enemies_list5?.forEach((enemy) => {
+      enemy.handleBeeMoves(count, signal);
+      // console.log(enemy);
     });
   }
 }
