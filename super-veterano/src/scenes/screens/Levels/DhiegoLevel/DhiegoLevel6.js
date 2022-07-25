@@ -47,6 +47,7 @@ export default class DhiegoLevel6 extends BaseLevel {
 
     makeLadder(this, [290, 350]);
     makeLadder(this, [200, 260]);
+    makeLadder(this, [138, 198]);
     
     this.playerObject = new Luiz(this);
     this.playableCharacter = this.playerObject.invokePlayableCharacter();
