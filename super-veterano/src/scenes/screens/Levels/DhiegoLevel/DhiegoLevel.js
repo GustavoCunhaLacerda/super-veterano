@@ -27,8 +27,8 @@ export default class DhiegoLevel extends BaseLevel {
   }
 
   preload() {
-    this.load.tilemapCSV("dhiegomap", "src/scenes/screens/Levels/DhiegoLevel/dhiego_level_v2.csv");
-    this.load.tilemapCSV("dhiegobg", "src/scenes/screens/Levels/DhiegoLevel/dhiego_level_v2_bg.csv");
+    this.load.tilemapCSV("dhiegomap", "src/scenes/screens/Levels/DhiegoLevel/csv/dhiego_level_v2.csv");
+    this.load.tilemapCSV("dhiegobg", "src/scenes/screens/Levels/DhiegoLevel/csv/dhiego_level_v2_bg.csv");
   }
 
   create() {
@@ -63,7 +63,7 @@ export default class DhiegoLevel extends BaseLevel {
       { pos: 274, enemy: Dog, scale: 1 },
       { pos: 367, enemy: Bee, scale: 0.5 },
     ].forEach(({ pos, enemy, scale }) => {
-      enemies_list.push(this.makeEnemy(pos, enemy, scale));
+      enemies_list.push(this.makeEnemy(pos, enemy, scale, layer));
     });
 
     zone = this.add.zone(0, 0).setSize(10, 10);
@@ -98,13 +98,12 @@ export default class DhiegoLevel extends BaseLevel {
     this.gameplayHandler();
 
     count++;
-    // console.log(count);
     if (count > 200) {
       count = 0;
       signal *= -1;
     }
     enemies_list.forEach((enemy) => {
-      enemy.handleBeeMoves?.(count, signal);
+      enemy.handleMoves?.(count, signal);
     });
   }
 }

@@ -6,6 +6,5 @@ import Question from "./screens/Question";
 import GameOver from "./screens/GameOver";
 
 import DhiegoLevel from "./screens/Levels/DhiegoLevel";
-import AlessandraLevel from "./screens/Levels/AlessandraLevel";
 
-export default [Boot, MainMenu, Credits, TextHitory, Question, GameOver, AlessandraLevel, ...DhiegoLevel];
+export default [Boot, MainMenu, Credits, TextHitory, Question, GameOver, ...DhiegoLevel];

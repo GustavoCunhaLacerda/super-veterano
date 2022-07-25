@@ -1,3 +1,102 @@
 {
-  "calc:2": { "question": "∫ x + 1 dx ", "answer": 2, "options": [1, 2, 3, 4] }
+  "calc:1": {
+    "question": "∫ x + 1 dx ",
+    "answer": "1 + c",
+    "options": [
+      "1 + c",
+      "2 + c",
+      "c",
+      "x + c"
+    ]
+  },
+  "calc:2": {
+    "question": "∫ 2x + 1 dx ",
+    "answer": "2 + c",
+    "options": [
+      "2 + c",
+      "2x + c",
+      "c",
+      "3 + c"
+    ]
+  },
+  "calc:3": {
+    "question": "∫ x² dx ",
+    "answer": "2x + c",
+    "options": [
+      "2x + c",
+      "x + 1",
+      "x + 2c",
+      "2x + 1 + c"
+    ]
+  },
+  "calc:4": {
+    "question": "∫ x³ dx ",
+    "answer": "3x² + c",
+    "options": [
+      "3x² + c",
+      "x² + c",
+      "3x²",
+      "x² + c"
+    ]
+  },
+  "calc:5": {
+    "question": "∫ x³ + 3 dx ",
+    "answer": "3x² + c",
+    "options": [
+      "3x² + c",
+      "x + c",
+      "3x²",
+      "x + c"
+    ]
+  },
+  "calc:6": {
+    "question": "∫ 2x³ - 2 dx ",
+    "answer": "6x² + c",
+    "options": [
+      "6x² + c",
+      "x² + c",
+      "3x²",
+      "x² + c"
+    ]
+  },
+  "calc:7": {
+    "question": "∫ 5x² dx ",
+    "answer": "10x + c",
+    "options": [
+      "10x + c",
+      "5x² + c",
+      "5x²",
+      "x² + c"
+    ]
+  },
+  "calc:8": {
+    "question": "∫ 7x² dx ",
+    "answer": "14x + c",
+    "options": [
+      "14x + c",
+      "7x² + c",
+      "7x²",
+      "x² + c"
+    ]
+  },
+  "calc:9": {
+    "question": "∫ 5x³ - 2x² dx ",
+    "answer": "15x² - 4x + c",
+    "options": [
+      "15x² - 4x + c",
+      "5x³ - 2x² + c",
+      "5x³ - 2x²",
+      "x² + c"
+    ]
+  },
+  "calc:10": {
+    "question": "∫ 2x³ - 4x² dx ",
+    "answer": "6x² - 8x + c",
+    "options": [
+      "6x² - 8x + c",
+      "2x³ - 4x² + c",
+      "2x³ - 4x²",
+      "x² + c"
+    ]
+  }
 }

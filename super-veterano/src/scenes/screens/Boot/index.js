@@ -1,5 +1,6 @@
 import Textures16 from "../../../assets/tiles/Textures-16.png";
 import TexturesSimple from "../../../assets/tiles/tilesetplain_16x16_blue.png";
+import TextureBoard from "../../../assets/tiles/quadro.png";
 import bg from "../../../assets/backgrounds/leveld_Bg.jpg";
 import IFBEntrance from "../../../assets/backgrounds/fachada-ifb-2.png";
 import loadingSprite from "../../../assets/ui/wenrexa/Progress03.png";
@@ -9,10 +10,10 @@ import logoSubtitle from "../../../assets/ui/logo-subtitle.png";
 
 import beeAnims from "../../../scenes/game_objects/enemies/common/assets/bee_idle.png";
 import dogAnims from "../../../scenes/game_objects/enemies/common/assets/dog_idle.png";
+import sigmaAnims from "../../../scenes/game_objects/enemies/common/assets/sigma_idle.png";
 
 import luizAnims from "../../game_objects/player/Luiz/assets/animations";
 import dhiegoAnims from "../../game_objects/enemies/bosses/Dhiego/animations";
-import alessandraAnims from "../../game_objects/enemies/bosses/Alessandra/animations";
 
 import ladder from "../../../scenes/game_objects/platforms/Ladder/assets/mine_ladder.png";
 import ladder_up from "../../../scenes/game_objects/platforms/Ladder/assets/mine_ladder_upper.png";
@@ -27,6 +28,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image("Background.default", bg);
     this.load.image("Textures.default", Textures16);
     this.load.image("Textures.simple", TexturesSimple);
+    this.load.image("Textures.board", TextureBoard);
     this.load.image("Background.menu", IFBEntrance);
     this.load.image("Interface.button.base", buttonBase);
     this.load.image("Interface.logo.title", logoTitle);
@@ -36,9 +38,9 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet("Sprites.player.luiz.walk", luizAnims.luiz_walk, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet("Sprites.player.luiz.jump", luizAnims.luiz_jump, { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet("Sprites.enemies.dhiego.writing", dhiegoAnims.dhiego_writing, { frameWidth: 42, frameHeight: 48 });
-    this.load.spritesheet("Sprites.enemies.alessandra.writing", alessandraAnims.alessandra_writing, { frameWidth: 42, frameHeight: 48 });
     this.load.spritesheet("Sprites.enemies.bee.idle", beeAnims, { frameWidth: 16, frameHeight: 20 });
-    this.load.spritesheet("Sprites.enemies.dog.idle", dogAnims, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet("Sprites.enemies.dog.idle", dogAnims, { frameWidth: 13, frameHeight: 9 });
+    this.load.spritesheet("Sprites.enemies.sigma.idle", sigmaAnims, { frameWidth: 10, frameHeight: 10 });
 
     this.load.image("Sprites.itens.ladder", ladder);
     this.load.image("Sprites.itens.ladderTop", ladder_up);

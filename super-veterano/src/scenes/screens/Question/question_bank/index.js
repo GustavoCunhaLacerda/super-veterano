@@ -1,4 +1,4 @@
-import * as teste from "./questions.json";
+import * as questionsList from "./questions.json";
 class Question {
   constructor(question, answer, options) {
     this.question = question;
@@ -22,13 +22,35 @@ function shuffleArray(array) {
   }
 }
 
-export function getQuestion() {
-  const x = generateRandomIntegerInRange(-10, 10);
-  const y = generateRandomIntegerInRange(-10, 10);
-  const answer = x + y;
+export function getQuestion(type) {
+  console.log(type);
+  if (type == "sum") {
+    const x = generateRandomIntegerInRange(0, 10);
+    const y = generateRandomIntegerInRange(0, 10);
+    const answer = x + y;
 
-  const options = [answer, answer + generateRandomIntegerInRange(-10, 10), answer - generateRandomIntegerInRange(-10, 10), answer + generateRandomIntegerInRange(-10, 10)];
-  shuffleArray(options);
+    const options = [answer, answer + generateRandomIntegerInRange(0, 10), answer - generateRandomIntegerInRange(0, 10), answer + generateRandomIntegerInRange(0, 10)];
+    shuffleArray(options);
 
-  return new Question(`${x} + ${y} = ?`, answer, options);
+    return new Question(`(${x}) + (${y}) = ?`, answer, options);
+  }
+  if (type == "sub") {
+    const x = generateRandomIntegerInRange(0, 10);
+    const y = generateRandomIntegerInRange(0, 10);
+    const answer = x - y;
+
+    const options = [answer, answer + generateRandomIntegerInRange(0, 10), answer - generateRandomIntegerInRange(0, 10), answer + generateRandomIntegerInRange(0, 10)];
+    shuffleArray(options);
+
+    return new Question(`(${x}) - (${y}) = ?`, answer, options);
+  }
+  if (type == "calc") {
+    const rndNumber = Math.floor(Math.random() * 10) + 1;
+
+    const question = questionsList.default["calc:" + rndNumber];
+    shuffleArray(question.options);
+    console.log(question.answer);
+
+    return new Question(question.question, question.answer, question.options);
+  }
 }

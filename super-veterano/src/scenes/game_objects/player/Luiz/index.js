@@ -3,10 +3,9 @@ import addControlKeys from "./scripts/addControlKeys";
 import playerControls from "./scripts/playerControls";
 
 export default class Luiz {
+  static lifePoints = 10;
   constructor(phaserScene) {
-    this.lifePoints = 10;
     this.phaserScene = phaserScene;
-
     playerAnimations.idleAnimation(phaserScene, "Sprites.player.luiz.idle");
     playerAnimations.walkAnimation(phaserScene, "Sprites.player.luiz.walk");
     playerAnimations.jumpAnimation(phaserScene, "Sprites.player.luiz.jump");
@@ -23,7 +22,7 @@ export default class Luiz {
       align: "center",
     });
 
-    this.lifePointsText = phaserScene.add.text(0, 0, `${this.lifePoints}/10`, {
+    this.lifePointsText = phaserScene.add.text(0, 0, `${Luiz.lifePoints}/10`, {
       fontSize: "16px",
       fill: "#000",
       align: "center",
@@ -40,7 +39,7 @@ export default class Luiz {
 
     addControlKeys(this.phaserScene);
 
-    this.playerLifePointsText = this.phaserScene.add.text(0, 0, "Vida: " + this.lifePoints, {
+    this.playerLifePointsText = this.phaserScene.add.text(0, 0, "Vida: " + Luiz.lifePoints, {
       fontSize: "16px",
       fill: "#000",
       align: "center",
@@ -56,9 +55,9 @@ export default class Luiz {
   }
 
   damage(damage) {
-    this.lifePoints -= damage;
-    this.lifePointsText.setText(`${this.lifePoints}/10`);
-    this.playerLifePointsText.setText("Vida: " + this.lifePoints)
+    Luiz.lifePoints -= damage;
+    this.lifePointsText.setText(`${Luiz.lifePoints}/10`);
+    this.playerLifePointsText.setText("Vida: " + Luiz.lifePoints);
     this.endGameCheck();
   }
 

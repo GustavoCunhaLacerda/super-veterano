@@ -21,23 +21,23 @@ let layer;
 let enemies_list = [];
 let zone;
 
-export default class DhiegoLevel4 extends BaseLevel {
+export default class DhiegoLevel6 extends BaseLevel {
   constructor() {
-    super("dhiegolevel4", true);
+    super("dhiegolevel4", false);
   }
 
   preload() {
-    this.load.tilemapCSV("dhiegomap4", "src/scenes/screens/Levels/DhiegoLevel/dhiego_level_4.csv");
-    this.load.tilemapCSV("dhiegobg4", "src/scenes/screens/Levels/DhiegoLevel/dhiego_level_v2_bg.csv");
+    this.load.tilemapCSV("dhiegomap6", "src/scenes/screens/Levels/DhiegoLevel/csv/dhiego_level_6.csv");
+    this.load.tilemapCSV("dhiegobg6", "src/scenes/screens/Levels/DhiegoLevel/csv/dhiego_level_v2_bg.csv");
   }
 
   create() {
     // ------------------------------------------------- //
-    bg_map = this.make.tilemap({ key: "dhiegobg4", tileWidth: 16, tileHeight: 16 });
+    bg_map = this.make.tilemap({ key: "dhiegobg6", tileWidth: 16, tileHeight: 16 });
     bg_tileset = bg_map.addTilesetImage("Textures.simple");
     bg_layer = bg_map.createLayer(0, bg_tileset, 0, 0);
 
-    map = this.make.tilemap({ key: "dhiegomap4", tileWidth: 16, tileHeight: 16 });
+    map = this.make.tilemap({ key: "dhiegomap6", tileWidth: 16, tileHeight: 16 });
     tileset = map.addTilesetImage("Textures.simple");
     layer = map.createLayer(0, tileset, 0, 0);
 
@@ -45,9 +45,9 @@ export default class DhiegoLevel4 extends BaseLevel {
 
     this.useGrid();
 
-     makeLadder(this, [225, 285]);
-     makeLadder(this, [234, 294]);
-     makeLadder(this, [158, 218]);
+    makeLadder(this, [290, 350]);
+    makeLadder(this, [200, 260]);
+    makeLadder(this, [138, 198]);
 
     this.playerObject = new Luiz(this);
     this.playableCharacter = this.playerObject.invokePlayableCharacter();
@@ -58,21 +58,19 @@ export default class DhiegoLevel4 extends BaseLevel {
 
     // ------------------------------------------------- //
 
-    // [{pos:23, enemy: Dog}, {pos:295, enemy: Dog}, {pos:216, enemy: Bee}, {pos:135, enemy: Bee}].forEach(({pos, enemy}) => {
-    //   enemies_list.push(this.makeEnemy(pos, enemy));
-    // });
-
-    this.enemies_list4 = [];
-    [216, 137].forEach((pos, index) => {
-      this.enemies_list4.push(this.makeEnemy(pos, Bee));
-    });
-    this.enemies_list4_dog = [];
-    [23, 295 ].forEach((pos, index) => {
-      this.enemies_list4_dog.push(this.makeEnemy(pos, Dog));
+    [
+      { pos: 353, enemy: Bee, scale: 0.5 },
+      { pos: 263, enemy: Bee, scale: 0.5 },
+      { pos: 109, enemy: Bee, scale: 0.5 },
+      { pos: 272, enemy: Dog, scale: 1 },
+      { pos: 197, enemy: Dog, scale: 1 },
+      { pos: 102, enemy: Dog, scale: 1 },
+    ].forEach(({ pos, enemy, scale }) => {
+      enemies_list.push(this.makeEnemy(pos, enemy, scale, layer));
     });
 
     zone = this.add.zone(0, 0).setSize(10, 10);
-    this.customGrid.placeAtIndex(20, zone);
+    this.customGrid.placeAtIndex(52, zone);
     this.physics.world.enable(zone, 0);
     zone.body.setAllowGravity(false);
     zone.body.moves = false;
@@ -108,14 +106,8 @@ export default class DhiegoLevel4 extends BaseLevel {
       count = 0;
       signal *= -1;
     }
-    this.enemies_list4?.forEach((enemy) => {
-      enemy.handleBeeMoves(count, signal);
-      // console.log(enemy);
-    });
-    
-    this.enemies_list4_dog?.forEach((enemy) => {
-      enemy.handleDogMoves(count, signal);
-      // console.log(enemy);
+    enemies_list.forEach((enemy) => {
+      enemy.handleMoves?.(count, signal);
     });
   }
 }

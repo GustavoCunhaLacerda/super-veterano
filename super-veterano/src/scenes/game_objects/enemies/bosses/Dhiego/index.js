@@ -1,15 +1,8 @@
 import dhiegoAnimations from "./scripts/dhiegoAnimations";
+import Enemy from "../../Enemy";
 
-export default class Dhiego {
+export default class Dhiego extends Enemy {
   constructor(phaserScene) {
-    this.phaserScene = phaserScene;
-
-    dhiegoAnimations.writeAnimation(phaserScene, "Sprites.enemies.dhiego.writing");
-
-    this.sprite = phaserScene.physics.add
-      .sprite(0)
-      .setSize(42, 48)
-      .setOffset(0, 0)
-      .anims.play("d_writing", true);
+    super(phaserScene, "Dhiego", "dhiego", 10, "Sprites.enemies.dhiego.writing", true, [0, 1, 2]);
   }
 }

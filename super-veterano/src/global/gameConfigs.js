@@ -15,7 +15,7 @@ export default {
       gravity: {
         y: constants.GRAVITY_Y,
       },
-      debug: true,
+      debug: false,
     },
   },
   backgroundColor: colors.BACKGROUND_CANVA,

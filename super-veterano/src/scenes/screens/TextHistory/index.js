@@ -41,6 +41,6 @@ function updateText(phaserScene, hist) {
     hist.setText(initialHistory[index]);
     index++;
   } else {
-    phaserScene.scene.start("dhiegolevel4");
+    phaserScene.scene.start("dhiegolevel");
   }
 }
