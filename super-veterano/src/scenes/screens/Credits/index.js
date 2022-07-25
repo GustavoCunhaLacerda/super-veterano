@@ -15,15 +15,15 @@ export default class Credits extends Phaser.Scene {
     // create a font config object
     const fontConfig = {
       fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
-      fontSize: "32px",
+      fontSize: "16px",
       color: "#ffffff",
     };
 
     // add a centered text to the scene to credit the creators Gustavo C Lacerda and João Vítor Souza Rezende
     this.add
       .text(
-        300,
-        300,
+        150,
+        150,
         "Feito por\n\nGustavo C Lacerda\nJoão Vítor Souza Rezende",
         fontConfig
       )
