@@ -31,6 +31,8 @@ export default class Bee {
     totem.anims.play("bee_idle", true);
     totem.body.setAllowGravity(false);
 
+    totem.type = "bee";
+
     this.name = phaserScene.add.text(0, 0, `Somabelha`, {
       fontSize: "16px",
       fill: "#000",

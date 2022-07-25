@@ -58,8 +58,12 @@ export default class DhiegoLevel extends BaseLevel {
 
     // ------------------------------------------------- //
 
-    [{pos:265, enemy: Dog}, {pos:274, enemy: Dog}, {pos:367, enemy: Bee}].forEach(({pos, enemy}) => {
-      enemies_list.push(this.makeEnemy(pos, enemy));
+    [
+      { pos: 265, enemy: Dog, scale: 1 },
+      { pos: 274, enemy: Dog, scale: 1 },
+      { pos: 367, enemy: Bee, scale: 0.5 },
+    ].forEach(({ pos, enemy, scale }) => {
+      enemies_list.push(this.makeEnemy(pos, enemy, scale));
     });
 
     zone = this.add.zone(0, 0).setSize(10, 10);
@@ -67,7 +71,7 @@ export default class DhiegoLevel extends BaseLevel {
     this.physics.world.enable(zone, 0);
     zone.body.setAllowGravity(false);
     zone.body.moves = false;
-    // this.customGrid.placeAtIndex(372, zone);
+
     this.physics.add.overlap(this.playableCharacter, zone);
     this.physics.add.collider(
       this.playableCharacter,
@@ -100,8 +104,7 @@ export default class DhiegoLevel extends BaseLevel {
       signal *= -1;
     }
     enemies_list.forEach((enemy) => {
-
-      // enemy.handleBeeMoves(count, signal);
+      enemy.handleBeeMoves?.(count, signal);
     });
   }
 }

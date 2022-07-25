@@ -1,16 +1,18 @@
 export default class Dog {
-  constructor(phaserScene) {
-    this.name = "Dog";
-    this.lifePoints = 2;
+  constructor(phaserScene, name, code, lifePoints, spritesheetKey, animationFrames) {
+    this.code = code;
+    this.name = name;
+    this.lifePoints = lifePoints;
     this.phaserScene = phaserScene;
     this.body = null;
+    this.spritesheetKey = spritesheetKey;
 
-    this.idleAnimation(phaserScene, "Sprites.enemies.dog.idle");
+    this.idleAnimation(phaserScene, spritesheetKey);
   }
 
   invokeEnemyCharacter() {
-    const sprite = this.phaserScene.physics.add.sprite(0, 0, "Sprites.enemies.dog.idle");
-    sprite.anims.play("dog_idle", true);
+    const sprite = this.phaserScene.physics.add.sprite(0, 0, this.spritesheetKey);
+    sprite.anims.play(`${this.code}_idle`, true);
     sprite.body.setAllowGravity(false);
 
     this.body = sprite;
@@ -18,20 +20,8 @@ export default class Dog {
     return sprite;
   }
 
-<<<<<<< Updated upstream
-  handleDogMoves(countAux, signal) {
-      this.body.flipX = signal == 1 ? true : false;
-      try {
-        this.body.setVelocityX(10 * signal);
-      } catch (error) {
-        console.log("erro no movimento do dog");
-      }
-  }
-
-=======
->>>>>>> Stashed changes
   invokeEnemyTotem(phaserScene) {
-    const totem = phaserScene.physics.add.sprite(0, 0, "Sprites.enemies.dog.idle");
+    const totem = phaserScene.physics.add.sprite(0, 0, this.spritesheetKey);
     totem.anims.play("dog_idle", true);
     totem.body.setAllowGravity(false);
 
@@ -61,7 +51,7 @@ export default class Dog {
 
     if (this.lifePoints <= 0) {
       this.body.destroy();
-      this.phaserScene.scene.stop("question").wake("dhiegolevel");
+      this.phaserScene.scene.stop("question").wake(this.phaserScene.key);
     }
   }
 
